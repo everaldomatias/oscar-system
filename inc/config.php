@@ -1,14 +1,22 @@
 <?php
 
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "oscar_dev";
+session_start();
 
-// Create connection
-$conn = new mysqli( $servername, $username, $password, $dbname );
+$host     = "localhost";
+$username = "root";
+$password = "";
+$dbname   = "oscar_dev";
 
-// Check connection
-if ( $conn->connect_error ) {
-    die( "Connection failed: " . $conn->connect_error );
+global $pdo;
+
+// Connect ro DB with PDO
+try {
+    
+    $pdo = new PDO( "mysql:dbname=" . $dbname . "; host=" . $host, $username, $password );
+    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+} catch( PDOException $e ) {
+
+    echo "ERRO: " . $e->getMessage();
+
 }
