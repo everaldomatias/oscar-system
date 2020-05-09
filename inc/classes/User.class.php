@@ -2,7 +2,7 @@
 
 class User {
 
-    public function login( $login, $password ) {
+    public function login( $email, $pass ) {
 
         global $pdo;
 
@@ -17,6 +17,7 @@ class User {
             $data = $sql->fetch();
 
             $_SESSION['idUser'] = $data['id'];
+            $_SESSION['nameUser'] = $data['short_name'];
 
             return true;
 

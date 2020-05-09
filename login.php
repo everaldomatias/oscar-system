@@ -1,3 +1,7 @@
+<?php
+
+require 'inc/config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +43,20 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
+
+                  <?php if ( isset( $_SESSION['loginMessage'] ) || ! empty( $_SESSION['loginMessage'] ) ) : ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?php echo $_SESSION['loginMessage']; ?>
+                      <?php unset( $_SESSION['loginMessage'] ); ?>
+                    </div>
+                  <?php endif; ?>
+
                   <form class="user" method="POST" action="inc/validate-login.php">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" name="pass" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -53,13 +65,6 @@
                       </div>
                     </div>
                     <button type="submit" class="bbtn btn-primary btn-user btn-block">Login</button>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
                   </form>
                   <hr>
                   <div class="text-center">
